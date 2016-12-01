@@ -1,9 +1,18 @@
+package model;
+
 public abstract class Element {
     
-    protected static String DISPLAY;
+    protected static String display;
 
+    protected GameOfLife game;
     protected int x;
     protected int y;
+
+    public Element(GameOfLife game, int x, int y) {
+        this.game = game;
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX() {
         return this.x;
@@ -19,9 +28,5 @@ public abstract class Element {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public Element[] getSurroundings() {
-        return null;
     }
 }
