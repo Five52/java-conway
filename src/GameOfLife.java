@@ -36,17 +36,17 @@ public class GameOfLife {
         int y;
         for (int i = 0; i < nbSharks; i++) {
             x = i % this.width;
-            y = i / this.height;
+            y = i / this.width;
             this.elements[x][y] = new Shark(this, x, y);
         }
         for (int i = nbSharks; i < nbSharks + nbPilchards; i++) {
             x = i % this.width;
-            y = i / this.height;
+            y = i / this.width;
             this.elements[x][y] = new Pilchard(this, x, y);
         }
         for (int i = nbSharks + nbPilchards; i < this.width * this.height; i++) {
             x = i % this.width;
-            y = i / this.height;
+            y = i / this.width;
             this.elements[x][y] = new Sea(this, x, y);
         }
     }
@@ -76,23 +76,23 @@ public class GameOfLife {
 
     protected void display() {
         String line = "+-";
-        for (int i = 0; i < this.width; i++) {
+        for (int x = 0; x < this.width; x++) {
             line += "-";
         }
         line += "-+";
         System.out.println(line);
 
-        for (int i = 0; i < this.width; i++) {
+        for (int y = 0; y < this.height; y++) {
             line = "| ";
-            for (int j = 0; j < this.height; j++) {
-                line += this.elements[i][j].toString();
+            for (int x = 0; x < this.width; x++) {
+                line += this.elements[x][y].toString();
             }
             line += " |";
             System.out.println(line);
         }
 
         line = "+-";
-        for (int i = 0; i < this.width; i++) {
+        for (int x = 0; x < this.width; x++) {
             line += "-";
         }
         line += "-+";
