@@ -49,3 +49,11 @@ public abstract class Element {
     public void setY(int y) {
         this.y = y;
     }
+    
+    /**
+     * Returns the display of the fish.
+     */
+    public String toString() {
+        return DISPLAY;
+    }
+}
