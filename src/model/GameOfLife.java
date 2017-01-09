@@ -28,7 +28,9 @@ public class GameOfLife {
     }
 
     public void kill(Fish fish) {
-        this.
+        int x = fish.getX();
+        int y = fish.getY();
+        this.elements[x][y] = new Sea(this, x, y);
     }
 
     protected void initGame(int nbSharks, int nbPilchards) {
@@ -36,24 +38,24 @@ public class GameOfLife {
         int y;
         for (int i = 0; i < nbSharks; i++) {
             x = i % this.width;
-            y = i / this.width;
+            y = i / this.height;
             this.elements[x][y] = new Shark(this, x, y);
         }
         for (int i = nbSharks; i < nbSharks + nbPilchards; i++) {
             x = i % this.width;
-            y = i / this.width;
+            y = i / this.height;
             this.elements[x][y] = new Pilchard(this, x, y);
         }
         for (int i = nbSharks + nbPilchards; i < this.width * this.height; i++) {
             x = i % this.width;
-            y = i / this.width;
+            y = i / this.height;
             this.elements[x][y] = new Sea(this, x, y);
         }
     }
 
     protected void randomize() {
         for (int i = 0; i < this.width; i++) {
-            for (int j = 0; j < this.width; j++) {
+            for (int j = 0; j < this.height; j++) {
                 
                 int x = (int) (Math.random() * this.width);
                 int y = (int) (Math.random() * this.height);
@@ -72,5 +74,30 @@ public class GameOfLife {
                 this.elements[x][y].setY() = tempY;
             }
         }
+    }
+
+    protected void display() {
+        String line = "+-";
+        for (int i = 0; i < this.width; i++) {
+            line += "-";
+        }
+        line += "-+";
+        System.out.println(line);
+
+        for (int i = 0; i < this.width; i++) {
+            line = "| ";
+            for (int j = 0; j < this.height; j++) {
+                line += this.elements[i][j].toString();
+            }
+            line += " |";
+            System.out.println(line);
+        }
+
+        line = "+-";
+        for (int i = 0; i < this.width; i++) {
+            line += "-";
+        }
+        line += "-+";
+        System.out.println(line);
     }
 }
