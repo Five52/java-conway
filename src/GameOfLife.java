@@ -57,21 +57,6 @@ public class GameOfLife {
                 int x = (int) (Math.random() * this.width);
                 int y = (int) (Math.random() * this.height);
                 this.swap(this.elements[i][j], this.elements[x][y]);
-                
-
-                // // Swap cells in the game
-                // Element temp = this.elements[i][j];
-                // this.elements[i][j] = this.elements[x][y];
-                // this.elements[x][y] = temp;
-
-                // // Swap cells coords
-                // int tempX = this.elements[i][j].getX();
-                // int tempY = this.elements[i][j].getY();
-                // this.elements[i][j].setX(this.elements[x][y].getX());
-                // this.elements[i][j].setY(this.elements[x][y].getY());
-                // this.elements[x][y].setX(tempX);
-                // this.elements[x][y].setY(tempY);
-            }
         }
     }
 

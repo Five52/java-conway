@@ -20,6 +20,11 @@ public class Shark extends Fish {
     public int getReproductionDuration() {
         return REPRODUCTION_INTERVAL;
     }
+
+    @Override
+    public void play() {
+
+    }
     
     @Override
     public String toString() {
