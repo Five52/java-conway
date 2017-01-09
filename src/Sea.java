@@ -5,7 +5,7 @@ public class Sea extends Element {
     /**
      * Builds a new Sea element.
      */
-    public Sea(int x, int y) {
-        super(x, y);
+    public Sea(GameOfLife game, int x, int y) {
+        super(game, x, y);
     }
 }

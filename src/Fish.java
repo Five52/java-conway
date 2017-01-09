@@ -72,13 +72,13 @@ public abstract class Fish extends Element {
         if (startX < 0) {
             startX = 0;
         }
-        if (endX > this.gameOfLife.getWidth() - 1) {
+        if (endX > this.game.getWidth() - 1) {
             endX = this.getX();
         }
         if (startY < 0) {
             startY = 0;
         }
-        if (endY > this.gameOfLife.getHeight() - 1) {
+        if (endY > this.game.getHeight() - 1) {
             endY = this.getY();
         }
         
@@ -87,7 +87,7 @@ public abstract class Fish extends Element {
                 if (i == this.x && j == this.y) {
                     continue;
                 }
-                surroundings.put(this.game.getElement(i, j));
+                surroundings.add(this.game.getElement(i, j));
             }
         }
         return surroundings;
@@ -101,7 +101,7 @@ public abstract class Fish extends Element {
         ArrayList<Sea> surroundingsSea = new ArrayList<Sea>();
         for (Element surroundingElement : surroundings) {
             if (surroundingElement instanceof Sea) {
-                surroundingsSea.put(surroundingElement); 
+                surroundingsSea.add((Sea) surroundingElement); 
             }
         }
         return surroundingsSea;

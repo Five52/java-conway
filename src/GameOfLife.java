@@ -66,10 +66,10 @@ public class GameOfLife {
                 // Swap cells coords
                 int tempX = this.elements[i][j].getX();
                 int tempY = this.elements[i][j].getY();
-                this.elements[i][j].setX() = this.elements[x][y].getX();
-                this.elements[i][j].setY() = this.elements[x][y].getY();
-                this.elements[x][y].setX() = tempX;
-                this.elements[x][y].setY() = tempY;
+                this.elements[i][j].setX(this.elements[x][y].getX());
+                this.elements[i][j].setY(this.elements[x][y].getY());
+                this.elements[x][y].setX(tempX);
+                this.elements[x][y].setY(tempY);
             }
         }
     }

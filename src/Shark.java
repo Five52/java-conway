@@ -7,7 +7,7 @@ public class Shark extends Fish {
     /**
      * Builds a new shark.
      */
-    public Shark(int x, int y) {
-        super(x, y);
+    public Shark(GameOfLife game, int x, int y) {
+        super(game, x, y);
     }
 }

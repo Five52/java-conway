@@ -7,7 +7,7 @@ public class Pilchard extends Fish {
     /**
      * Builds a new pilchard.
      */
-    public Pilchard(int x, int y) {
-        super(x, y);
+    public Pilchard(GameOfLife game, int x, int y) {
+        super(game, x, y);
     }
 }
