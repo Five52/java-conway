@@ -10,19 +10,4 @@ public class Sea extends Element {
     public Sea(int x, int y) {
         super(x, y);
     }
-
-    @Override
-    public int getMaxAge() {
-        return MAX_AGE;
-    }
-
-    @Override
-    public int getReproductionInterval() {
-        return REPRODUCTION_INTERVAL;
-    }
-
-    @Override
-    public String getDisplay() {
-        return display;
-    }
 }
