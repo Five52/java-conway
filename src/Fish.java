@@ -97,7 +97,7 @@ public abstract class Fish extends Element {
      * Returns the Sea element nearby the fish.
      * @return ArrayList<Sea> The arrayList of the surroundings Sea elements.
      */
-    public ArrayList<Sea> nearBySea() {
+    public ArrayList<Sea> getNearbySea() {
         ArrayList<Element> surroundings = this.getSurroundings();
         ArrayList<Sea> surroundingsSea = new ArrayList<Sea>();
         for (Element surroundingElement : surroundings) {
