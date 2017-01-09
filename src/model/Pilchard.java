@@ -1,5 +1,3 @@
-package model;
-
 public class Pilchard extends Fish {
     
     protected static final int MAX_AGE = 10;

@@ -1,5 +1,3 @@
-package model;
-
 public class GameOfLife {
 
     public Element[][] elements;

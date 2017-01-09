@@ -1,5 +1,3 @@
-package model;
-
 public class Shark extends Fish {
 
     protected static final int MAX_AGE = 20;

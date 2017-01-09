@@ -1,5 +1,3 @@
-package model;
-
 public class Sea extends Element {
     
     protected static final String DISPLAY = " ";
