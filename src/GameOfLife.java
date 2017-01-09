@@ -54,22 +54,23 @@ public class GameOfLife {
     protected void randomize() {
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
-                
                 int x = (int) (Math.random() * this.width);
                 int y = (int) (Math.random() * this.height);
+                this.swap(this.elements[i][j], this.elements[x][y]);
+                
 
-                // Swap cells in the game
-                Element temp = this.elements[i][j];
-                this.elements[i][j] = this.elements[x][y];
-                this.elements[x][y] = temp;
+                // // Swap cells in the game
+                // Element temp = this.elements[i][j];
+                // this.elements[i][j] = this.elements[x][y];
+                // this.elements[x][y] = temp;
 
-                // Swap cells coords
-                int tempX = this.elements[i][j].getX();
-                int tempY = this.elements[i][j].getY();
-                this.elements[i][j].setX(this.elements[x][y].getX());
-                this.elements[i][j].setY(this.elements[x][y].getY());
-                this.elements[x][y].setX(tempX);
-                this.elements[x][y].setY(tempY);
+                // // Swap cells coords
+                // int tempX = this.elements[i][j].getX();
+                // int tempY = this.elements[i][j].getY();
+                // this.elements[i][j].setX(this.elements[x][y].getX());
+                // this.elements[i][j].setY(this.elements[x][y].getY());
+                // this.elements[x][y].setX(tempX);
+                // this.elements[x][y].setY(tempY);
             }
         }
     }
@@ -97,5 +98,20 @@ public class GameOfLife {
         }
         line += "-+";
         System.out.println(line);
+    }
+
+    public void swap(Element e1, Element e2) {
+        // Swap cells in the game
+        Element temp = this.elements[e1.getX()][e1.getY()];
+        this.elements[e1.getX()][e1.getY()] = this.elements[e2.getX()][e2.getY()];
+        this.elements[e2.getX()][e2.getY()] = temp;
+
+        // Swap cells coords
+        int tempX = e1.getX();
+        int tempY = e1.getY();
+        e1.setX(e2.getX());
+        e1.setY(e2.getY());
+        e2.setX(tempX);
+        e2.setY(tempY);
     }
 }

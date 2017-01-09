@@ -52,4 +52,8 @@ public abstract class Element {
      * Returns the display of the element.
      */
     public abstract String toString();
+
+    public void swap(Element e) {
+        this.game.swap(this, e);
+    }
 }
