@@ -57,6 +57,7 @@ public class GameOfLife {
                 int x = (int) (Math.random() * this.width);
                 int y = (int) (Math.random() * this.height);
                 this.swap(this.elements[i][j], this.elements[x][y]);
+            }
         }
     }
 

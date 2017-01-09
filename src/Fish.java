@@ -94,7 +94,8 @@ public abstract class Fish extends Element {
     }
     
     /**
-     * Returns the Sea element near by the fish.
+     * Returns the Sea element nearby the fish.
+     * @return ArrayList<Sea> The arrayList of the surroundings Sea elements.
      */
     public ArrayList<Sea> nearBySea() {
         ArrayList<Element> surroundings = this.getSurroundings();
@@ -113,7 +114,12 @@ public abstract class Fish extends Element {
     public abstract int getMaxAge();
 
     /**
-     * Return the reproduction duration of the fish.
+     * Returns the reproduction duration of the fish.
      */
     public abstract int getReproductionDuration();
+
+    /**
+     * Allows a fish to play its turn.
+     */
+    public abstract void play();
 }

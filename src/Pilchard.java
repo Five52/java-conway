@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Pilchard extends Fish {
     
     protected static final int MAX_AGE = 10;
@@ -19,6 +21,24 @@ public class Pilchard extends Fish {
     @Override
     public int getReproductionDuration() {
         return REPRODUCTION_INTERVAL;
+    }
+
+    @Override
+    public void play() {
+        ArrayList<Sea> surroundingsSea = this.getNearbySea();
+        int size = surroundingsSea.size();
+        if (size == 0) {
+            return null;
+        }
+        int random = (int) Math.random() * size;
+        Sea target = surroundingsSea.get(random);
+        if (this.hasToReproduce) {
+            int i = target.getX();
+            int j = target.getY();
+            this.game.elements[i][j] = new Pilchard(this.game, i, j);
+        } else {
+            this.swap(target);
+        }
     }
 
     @Override
