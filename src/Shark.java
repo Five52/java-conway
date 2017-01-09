@@ -10,4 +10,19 @@ public class Shark extends Fish {
     public Shark(GameOfLife game, int x, int y) {
         super(game, x, y);
     }
+
+    @Override
+    public int getMaxAge() {
+        return MAX_AGE;
+    }
+    
+    @Override
+    public int getReproductionDuration() {
+        return REPRODUCTION_INTERVAL;
+    }
+    
+    @Override
+    public String toString() {
+        return DISPLAY;
+    }
 }

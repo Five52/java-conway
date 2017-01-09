@@ -47,11 +47,9 @@ public abstract class Element {
     public void setY(int y) {
         this.y = y;
     }
-    
+
     /**
-     * Returns the display of the fish.
+     * Returns the display of the element.
      */
-    public String toString() {
-        return DISPLAY;
-    }
+    public abstract String toString();
 }

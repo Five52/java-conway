@@ -8,4 +8,9 @@ public class Sea extends Element {
     public Sea(GameOfLife game, int x, int y) {
         super(game, x, y);
     }
+
+    @Override
+    public String toString() {
+        return DISPLAY;
+    }
 }

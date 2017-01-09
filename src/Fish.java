@@ -110,14 +110,10 @@ public abstract class Fish extends Element {
     /**
      * Returns the max age of the fish.
      */
-    public int getMaxAge() {
-        return MAX_AGE;
-    }
-    
+    public abstract int getMaxAge();
+
     /**
-     * Return the cycle duration of the fish.
+     * Return the reproduction duration of the fish.
      */
-    public int getReproductionDuration() {
-        return REPRODUCTION_INTERVAL;
-    }
+    public abstract int getReproductionDuration();
 }
