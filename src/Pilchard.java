@@ -28,7 +28,7 @@ public class Pilchard extends Fish {
         ArrayList<Sea> surroundingsSea = this.getNearbySea();
         int size = surroundingsSea.size();
         if (size == 0) {
-            return null;
+            return;
         }
         int random = (int) Math.random() * size;
         Sea target = surroundingsSea.get(random);

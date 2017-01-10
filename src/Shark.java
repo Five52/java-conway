@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Shark extends Fish {
 
     protected static final int MAX_AGE = 20;
@@ -29,5 +31,20 @@ public class Shark extends Fish {
     @Override
     public String toString() {
         return DISPLAY;
+    }
+
+    /**
+     * Returns the Pilchards nearby the shark.
+     * @return ArrayList<Pilchard> The arrayList of the nearby pilchards.
+     */
+    public ArrayList<Pilchard> getNearbyPilchards() {
+        ArrayList<Element> surroundings = this.getSurroundings();
+        ArrayList<Pilchard> pilchards = new ArrayList<Pilchard>();
+        for (Element surroundingElement : surroundings) {
+            if (surroundingElement instanceof Pilchard) {
+                pilchards.add((Pilchard) surroundingElement); 
+            }
+        }
+        return pilchards;
     }
 }
