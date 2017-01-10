@@ -48,7 +48,7 @@ public abstract class Element {
         this.y = y;
     }
 
-    public GameOfLife getGameOfLife() {
+    public GameOfLife getGame() {
         return this.game;
     }
 
