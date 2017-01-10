@@ -28,8 +28,8 @@ public class AdultStage implements Stage {
         return target;
     }
 
-    protected Pilchard getNearestPilchard(Shark shark) {
-        ArrayList<Pilchards> pilchards = shark.getGame().getPilchards();
+    protected Pilchard getNearestPilchard(Shark shark) {
+        ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
         return null;
     }
 }

@@ -25,7 +25,8 @@ public class Pilchard extends Fish {
 
     @Override
     public void play() {
-        ArrayList<Sea> surroundingsSea = this.getNearbySea();
+        ArrayList<Sea> surroundingsSea = new ArrayList<Sea>();
+        surroundingsSea.addAll(this.getNearbySea());
         int size = surroundingsSea.size();
         if (size == 0) {
             return;

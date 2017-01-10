@@ -82,8 +82,8 @@ public abstract class Fish extends Element {
             endY = this.getY();
         }
         
-        for (int i = startX; i <= endX + 1; i++) {
-            for (int j = startY - 1; j < endY - 1; j++) {
+        for (int i = startX; i < endX + 1; i++) {
+            for (int j = startY; j < endY + 1; j++) {
                 if (i == this.x && j == this.y) {
                     continue;
                 }
