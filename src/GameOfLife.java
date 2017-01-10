@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class GameOfLife {
 
-    public Element[][] elements;
-    public int width;
-    public int height;
+    protected Element[][] elements;
+    protected int width;
+    protected int height;
+    protected ArrayList<Shark> sharks;
+    protected ArrayList<Pilchard> pilchards;
 
     /**
      * Builds a new game of life.
@@ -15,6 +19,8 @@ public class GameOfLife {
         this.width = width;
         this.height = height;
         this.elements = new Element[width][height];
+        this.sharks = new ArrayList<Shark>();
+        this.pilchards = new ArrayList<Pilchard>();
 
         this.initGame(nbSharks, nbPilchards);
         this.randomize();
@@ -30,6 +36,14 @@ public class GameOfLife {
 
     public Element getElement(int x, int y) {
         return this.elements[x][y];
+    }
+    
+    public ArrayList<Shark> getSharks() {
+        return this.sharks;
+    }
+
+    public ArrayList<Pilchard> getPilchards() {
+        return this.pilchards;
     }
 
     /**
@@ -63,12 +77,17 @@ public class GameOfLife {
         for (int i = 0; i < nbSharks; i++) {
             x = i % this.width;
             y = i / this.width;
-            this.elements[x][y] = new Shark(this, x, y);
+            Shark shark = new Shark(this, x, y);
+            this.elements[x][y] = shark;
+            this.sharks.add(shark);
+
         }
         for (int i = nbSharks; i < nbSharks + nbPilchards; i++) {
             x = i % this.width;
             y = i / this.width;
-            this.elements[x][y] = new Pilchard(this, x, y);
+            Pilchard pilchard = new Pilchard(this, x, y);
+            this.elements[x][y] = pilchard;
+            this.pilchards.add(pilchard);
         }
         for (int i = nbSharks + nbPilchards; i < this.width * this.height; i++) {
             x = i % this.width;

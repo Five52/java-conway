@@ -48,6 +48,10 @@ public abstract class Element {
         this.y = y;
     }
 
+    public GameOfLife getGameOfLife() {
+        return this.game;
+    }
+
     /**
      * Returns the display of the element.
      */
