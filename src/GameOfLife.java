@@ -4,6 +4,13 @@ public class GameOfLife {
     public int width;
     public int height;
 
+    /**
+     * Builds a new game of life.
+     * @param width The width of the grid
+     * @param height The height of the grid
+     * @param nbSharks The number of sharks in the grid
+     * @param nbPilchards The number of pilchards in the grid
+     */
     public GameOfLife(int width, int height, int nbSharks, int nbPilchards) {
         this.width = width;
         this.height = height;
@@ -25,12 +32,31 @@ public class GameOfLife {
         return this.elements[x][y];
     }
 
+    /**
+     * Kills the given fish and replace it by a Sea element.
+     * A Pilchard is killed when :
+     * 1. Eaten by a shark
+     * 2. End of life
+     * A Shark is killed when :
+     * 1. Has not eaten for a while
+     * 2. End of life
+     * @param fish The fish to kill
+     */
     public void kill(Fish fish) {
         int x = fish.getX();
         int y = fish.getY();
         this.elements[x][y] = new Sea(this, x, y);
     }
 
+    /**
+     * Initializes the game. 
+     * The sharks are placed in the beginning of the grid,
+     * the pilchards just after the sharks,
+     * on the rest of the grid, sea elements are put.
+     * @param nbSharks The number of sharks to put on the grid
+     * @param nbPilchards The number of pilchards to put on the grid
+     *
+     */
     protected void initGame(int nbSharks, int nbPilchards) {
         int x;
         int y;
@@ -51,6 +77,9 @@ public class GameOfLife {
         }
     }
 
+    /**
+     * Randomizes the elements to mix them and have a random grid.
+     */
     protected void randomize() {
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
@@ -61,6 +90,9 @@ public class GameOfLife {
         }
     }
 
+    /**
+     * Displays the grid with borders.
+     */
     protected void display() {
         String line = "+-";
         for (int x = 0; x < this.width; x++) {
@@ -86,6 +118,11 @@ public class GameOfLife {
         System.out.println(line);
     }
 
+    /**
+     * Swaps two cells of the grid.
+     * @param e1 The first element to swap
+     * @param e2 The second element to swap
+     */
     public void swap(Element e1, Element e2) {
         // Swap cells in the game
         Element temp = this.elements[e1.getX()][e1.getY()];
