@@ -35,7 +35,7 @@ public abstract class Fish extends Element {
     
     /**
      * Returns the current age of the fish.
-     * @return currentAge, The current age of the fish.
+     * @return currentAge The current age of the fish.
      */
     public int getCurrentAge() {
         return this.currentAge;
@@ -50,7 +50,7 @@ public abstract class Fish extends Element {
 
     /**
      * Returns the boolean to say if the fish has to reproduce.
-     * @return hasToReproduce, if the fish has to reproduce
+     * @return hasToReproduce if the fish has to reproduce
      */
     public boolean hasToReproduce() {
         return hasToReproduce;
@@ -58,7 +58,7 @@ public abstract class Fish extends Element {
 
     /**
      * Get the surroundings elements of the fish.
-     * @return surroundings, an ArrayList of the surroundings elements
+     * @return surroundings an ArrayList of the surroundings elements
      */
     public ArrayList<Element> getSurroundings() {
         ArrayList<Element> surroundings = new ArrayList<Element>(); 
