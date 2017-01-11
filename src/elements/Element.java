@@ -1,3 +1,7 @@
+package elements;
+
+import game.GameOfLife;
+
 public abstract class Element {
     
     /**

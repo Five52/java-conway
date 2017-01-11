@@ -1,3 +1,7 @@
+package game;
+
+import elements.*;
+
 import java.util.ArrayList;
 
 public class GameOfLife {
@@ -36,6 +40,10 @@ public class GameOfLife {
 
     public Element getElement(int x, int y) {
         return this.elements[x][y];
+    }
+
+    public void setElement(int x, int y, Element e) {
+        this.elements[x][y] = e;
     }
     
     public ArrayList<Shark> getSharks() {
@@ -112,7 +120,7 @@ public class GameOfLife {
     /**
      * Displays the grid with borders.
      */
-    protected void display() {
+    public void display() {
         String line = "+-";
         for (int x = 0; x < this.width; x++) {
             line += "-";

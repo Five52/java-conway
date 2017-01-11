@@ -1,3 +1,7 @@
+package stages;
+
+import elements.*;
+
 import java.util.ArrayList;
 
 public class BabyStage implements Stage {

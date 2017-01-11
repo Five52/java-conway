@@ -1,3 +1,7 @@
+package elements;
+
+import game.GameOfLife;
+
 public class Sea extends Element {
     
     protected static final String DISPLAY = " ";

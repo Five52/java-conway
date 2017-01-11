@@ -1,3 +1,8 @@
+package stages;
+
+import elements.Shark;
+import elements.Element;
+
 interface Stage {
     /**
      * Move a shark to a nearby element.

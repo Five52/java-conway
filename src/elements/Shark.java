@@ -1,3 +1,7 @@
+package elements;
+
+import game.GameOfLife;
+
 import java.util.ArrayList;
 
 public class Shark extends Fish {

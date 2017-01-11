@@ -1,3 +1,7 @@
+package elements;
+
+import game.GameOfLife;
+
 import java.util.ArrayList;
 
 public class Pilchard extends Fish {
@@ -36,7 +40,7 @@ public class Pilchard extends Fish {
         if (this.hasToReproduce) {
             int i = target.getX();
             int j = target.getY();
-            this.game.elements[i][j] = new Pilchard(this.game, i, j);
+            this.game.setElement(i, j, new Pilchard(this.game, i, j));
         } else {
             this.swap(target);
         }
