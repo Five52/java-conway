@@ -13,6 +13,7 @@ public class AdultStage implements Stage {
      */
     @Override
     public Element move(Shark shark) {
+        // If we have pilchards at one cell from the shark
         ArrayList<Pilchard> nearbyPilchards = shark.getNearbyPilchards();
         int size = nearbyPilchards.size();
         if (size != 0) {
@@ -21,6 +22,13 @@ public class AdultStage implements Stage {
             shark.swap(target);
             return target;
         }
+        // Else we look for the nearest pilchard
+        ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
+        if (pilchards.size() != 0) {
+            return this.getNearestPilchard(shark, pilchards);
+        }
+
+        // Else we move the shark randomly
         ArrayList<Sea> nearbySea = shark.getNearbySea();
         size = nearbySea.size();
         if (size == 0) {
@@ -32,8 +40,37 @@ public class AdultStage implements Stage {
         return target;
     }
 
-    protected Pilchard getNearestPilchard(Shark shark) {
-        ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
-        return null;
+    /**
+     * Retrieve the nearest pilchard from the shark
+     * @param Shark the shark
+     * @param ArrayList<Pilchard> the list of pilchards to search into
+     * @return Pilchard the nearest pilchard
+     */
+    protected Pilchard getNearestPilchard(Shark shark, ArrayList<Pilchard> pilchards) {
+        Pilchard nearestPilchard = null;
+        int nearestPilchardDistance = Integer.MAX_VALUE;
+        for (Pilchard p : pilchards) {
+            int pDistance = this.calculateDistance(shark, p);
+            if (pDistance < nearestPilchardDistance) {
+                nearestPilchard = p;
+                nearestPilchardDistance = pDistance;
+            }
+        }
+        return nearestPilchard;
+    }
+
+    /**
+     * Calculate the distance between a shark and a pilchard.
+     * Since the fishes move from cell to cell and since they can move diagonally,
+     * the distance is simply obtained by calculating the differences between their respective abscisses and ordinates,
+     * and returning the biggest difference.
+     * @param Shark the shark
+     * @param Pilchard the pilchard
+     * @return int the distance between a shark and a pilchard
+     */
+    protected int calculateDistance(Shark s, Pilchard p) {
+        int dx = Math.abs(s.getX() - p.getX());
+        int dy = Math.abs(s.getY() - p.getY());
+        return Math.max(dx, dy);
     }
 }
