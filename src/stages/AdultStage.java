@@ -4,7 +4,7 @@ import elements.*;
 
 import java.util.ArrayList;
 
-public class AdultStage implements Stage {
+public class AdultStage extends Stage {
     /**
      * Move a shark to the nearest pilchard, or randomly if there isn't any.
      * An adult shark can take another shark's spot.
@@ -72,5 +72,10 @@ public class AdultStage implements Stage {
         int dx = Math.abs(s.getX() - p.getX());
         int dy = Math.abs(s.getY() - p.getY());
         return Math.max(dx, dy);
+    }
+
+    @Override
+    public void changeStageIfNeeded(Shark shark) {
+        return;
     }
 }

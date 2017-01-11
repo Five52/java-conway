@@ -22,9 +22,10 @@ public abstract class Fish extends Element {
     protected int currentAge;
 
     /**
-     * Says if the fish has to reproduce (cycle in term).
+     * Countdown of reproduction.
+     * If it is down to 0, the fish's priority is to reproduce.
      */
-    protected boolean hasToReproduce;
+    protected int reproductionCountdown;
 
     /**
      * Builds a new fish.
@@ -35,6 +36,7 @@ public abstract class Fish extends Element {
     public Fish(GameOfLife game, int x, int y) {
         super(game, x, y);
         this.currentAge = 0;
+        this.reproductionCountdown = REPRODUCTION_INTERVAL;
     }
     
     /**
@@ -53,11 +55,12 @@ public abstract class Fish extends Element {
     }
 
     /**
-     * Returns the boolean to say if the fish has to reproduce.
-     * @return hasToReproduce if the fish has to reproduce
+     * Check if the fish can reproduce.
+     * @return boolean true if the fish can reproduce.
      */
-    public boolean hasToReproduce() {
-        return hasToReproduce;
+    public boolean canReproduce() {
+        return this.reproductionCountdown == 0
+            && this.getNearbySea().size() != 0;
     }
 
     /**
@@ -123,7 +126,32 @@ public abstract class Fish extends Element {
     public abstract int getReproductionDuration();
 
     /**
-     * Allows a fish to play its turn.
+     * Play the fish's turn.
      */
-    public abstract void play();
+    public void play() {
+        if (this.canReproduce()) {
+            this.reproduce();
+        } else {
+            this.move();
+        }
+        this.age();
+        if (!this.hasSurvived()) {
+            this.getGame().kill(this);
+        }
+    }
+
+    /**
+     * Create a new fish
+     */
+    protected abstract void reproduce();
+
+    /**
+     * Move the fish
+     */
+    protected abstract void move();
+
+    /**
+     * Check if the fish has survived this turn
+     */
+    protected abstract boolean hasSurvived();
 }

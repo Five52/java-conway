@@ -28,7 +28,20 @@ public class Pilchard extends Fish {
     }
 
     @Override
-    public void play() {
+    public String toString() {
+        return DISPLAY;
+    }
+
+    @Override
+    protected void reproduce() {
+        ArrayList<Sea> surroundings = this.getNearbySea();
+        int random = (int) Math.random() * surroundings.size();
+        Sea s = surroundings.get(random);
+        this.game.addPilchard(new Pilchard(this.game, s.getX(), s.getY()));
+    }
+
+    @Override
+    protected void move() {
         ArrayList<Sea> surroundingsSea = new ArrayList<Sea>();
         surroundingsSea.addAll(this.getNearbySea());
         int size = surroundingsSea.size();
@@ -37,17 +50,6 @@ public class Pilchard extends Fish {
         }
         int random = (int) Math.random() * size;
         Sea target = surroundingsSea.get(random);
-        if (this.hasToReproduce) {
-            int i = target.getX();
-            int j = target.getY();
-            this.game.setElement(i, j, new Pilchard(this.game, i, j));
-        } else {
-            this.swap(target);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return DISPLAY;
+        this.swap(target);
     }
 }

@@ -4,7 +4,7 @@ import elements.*;
 
 import java.util.ArrayList;
 
-public class BabyStage implements Stage {
+public class BabyStage extends Stage {
     /**
      * Move a shark to a random spot.
      * A baby shark can't take another shark's spot.
@@ -24,5 +24,12 @@ public class BabyStage implements Stage {
         Element target = nearby.get(random);
         shark.swap(target);
         return target;
+    }
+
+    @Override
+    public void changeStageIfNeeded(Shark shark) {
+        if (shark.getCurrentAge() >= NEXT_STAGE_TIME) {
+            shark.setStage(StageFactory.getAdultStage());
+        }
     }
 }

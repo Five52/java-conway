@@ -71,6 +71,34 @@ public class GameOfLife {
     }
 
     /**
+     * Add a fish
+     * @param Fish the fish
+     */
+    protected void addFish(Fish fish) {
+        int x = fish.getX();
+        int y = fish.getY();
+        this.elements[x][y] = fish;
+    }
+
+    /**
+     * Add a pilchard
+     * @param Pilchard the pilchard
+     */
+    public void addPilchard(Pilchard p) {
+        this.addFish(p);
+        this.pilchards.add(p);
+    }
+
+    /**
+     * Add a shark
+     * @param Shark the shark
+     */
+    public void addShark(Shark s) {
+        this.addFish(s);
+        this.sharks.add(s);
+    }
+
+    /**
      * Initializes the game. 
      * The sharks are placed in the beginning of the grid,
      * the pilchards just after the sharks,

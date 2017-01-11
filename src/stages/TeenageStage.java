@@ -4,7 +4,8 @@ import elements.*;
 
 import java.util.ArrayList;
 
-public class TeenageStage implements Stage {
+public class TeenageStage extends Stage {
+    protected static final int NEXT_STAGE_TIME = 3;
     /**
      * Move a shark to a random pilchard if there is any, or to a nearby sea.
      * A teenage shark can't take another shark's spot.
@@ -30,5 +31,12 @@ public class TeenageStage implements Stage {
         Element target = nearbySea.get(random);
         shark.swap(target);
         return target;
+    }
+
+    @Override
+    public void changeStageIfNeeded(Shark shark) {
+        if (shark.getCurrentAge() >= NEXT_STAGE_TIME) {
+            shark.setStage(StageFactory.getAdultStage());
+        }
     }
 }
