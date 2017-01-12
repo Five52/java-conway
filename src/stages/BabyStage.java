@@ -31,7 +31,7 @@ public class BabyStage extends Stage {
     @Override
     public void changeStageIfNeeded(Shark shark) {
         if (shark.getCurrentAge() >= NEXT_STAGE_TIME) {
-            shark.setStage(StageFactory.getAdultStage());
+            shark.setStage(StageFactory.getTeenageStage());
         }
     }
 }

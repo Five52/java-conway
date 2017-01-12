@@ -26,7 +26,9 @@ public class AdultStage extends Stage {
         ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
         if (pilchards.size() != 0) {
             Pilchard nearest = this.getNearestPilchard(shark, pilchards);
-            return this.nextElementInBestPath(shark, nearest);
+            Element target = this.nextElementInBestPath(shark, nearest);
+            shark.swap(target);
+            return target;
         }
 
         // Else we move the shark randomly
@@ -100,16 +102,16 @@ public class AdultStage extends Stage {
         int elementCoordinateX = s.getX();
         int elementCoordinateY = s.getY();
         // Increase or decrease elementCoordinateX
-        if (angle > Math.PI * 5 / 8 || angle <= - Math.PI * 5 / 8  ) {
+        if (angle > (5 * Math.PI / 8) || angle <= (-5 * Math.PI / 8  )) {
             elementCoordinateX--;
-        } else if (angle > - Math.PI * 3 / 8 && angle <= Math.PI * 3) {
+        } else if (angle > (-3 * Math.PI / 8) && angle <= (3 * Math.PI / 8)) {
             elementCoordinateX++;
         }
         // Increase or decrease elementCoordinateY
-        if (angle > - Math.PI * 7 / 8 && angle <= - Math.PI / 8  ) {
-            elementCoordinateX--;
-        } else if (angle > Math.PI / 8 && angle <= - Math.PI * 7 / 8  ) {
-            elementCoordinateX++;
+        if (angle > (-7 * Math.PI / 8) && angle <= (- Math.PI / 8)) {
+            elementCoordinateY--;
+        } else if (angle > (Math.PI / 8) && angle <= (7 * Math.PI / 8)) {
+            elementCoordinateY++;
         }
 
         return s.getGame().getElement(elementCoordinateX, elementCoordinateY);

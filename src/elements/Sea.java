@@ -3,8 +3,8 @@ package elements;
 import game.GameOfLife;
 
 public class Sea extends Element {
-    
-    protected static final String DISPLAY = " ";
+
+    protected static final String DISPLAY = ".";
 
     /**
      * Builds a new Sea element.

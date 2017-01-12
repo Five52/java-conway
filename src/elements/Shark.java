@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class Shark extends Fish {
 
-    protected static final int MAX_AGE = 20;
-    protected static final int REPRODUCTION_INTERVAL = 4;
-    protected static final String DISPLAY = "O";
-
+    protected static final int MAX_AGE = 45;
+    protected static final int REPRODUCTION_INTERVAL = 6;
     /**
      * Maximal time a shark has to live when he has just eaten
      */
     protected static final int EATING_INTERVAL = 5;
+    protected static final String DISPLAY = "S";
+
 
     /**
      * Time left for shark to eat before dying
@@ -36,9 +36,10 @@ public class Shark extends Fish {
      */
     public Shark(GameOfLife game, int x, int y) {
         super(game, x, y);
+        this.reproductionCountdown = REPRODUCTION_INTERVAL;
         this.eatingCountdown = EATING_INTERVAL;
         this.hasJustEaten = false;
-        this.currentStage = StageFactory.getBabyStage();
+        this.currentStage = StageFactory.getAdultStage();
     }
 
     public void setStage(Stage stage) {
@@ -53,11 +54,6 @@ public class Shark extends Fish {
     @Override
     public int getReproductionDuration() {
         return REPRODUCTION_INTERVAL;
-    }
-
-    @Override
-    public void play() {
-
     }
 
     @Override
@@ -80,6 +76,12 @@ public class Shark extends Fish {
         this.currentStage.changeStageIfNeeded(this);
     }
 
+    protected void ageReproduction() {
+        if (this.currentStage instanceof AdultStage) {
+            super.ageReproduction();
+        }
+    }
+
     /**
      * Returns the Pilchards nearby the shark.
      * @return ArrayList<Pilchard> The arrayList of the nearby pilchards.
@@ -96,11 +98,18 @@ public class Shark extends Fish {
     }
 
     @Override
+    public void die() {
+        this.game.getSharks().remove(this);
+        this.game.setElement(this.x, this.y, new Sea(this.game, this.x, this.y));
+    }
+
+    @Override
     protected void reproduce() {
         ArrayList<Sea> surroundings = this.getNearbySea();
         int random = (int) Math.random() * surroundings.size();
         Sea s = surroundings.get(random);
         this.game.addShark(new Shark(this.game, s.getX(), s.getY()));
+        this.hasJustReproduced = true;
     }
 
     @Override

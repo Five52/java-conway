@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TeenageStage extends Stage {
 
-    protected static final int NEXT_STAGE_TIME = 8;
+    protected static final int NEXT_STAGE_TIME = 7;
     /**
      * Move a shark to a random pilchard if there is any, or to a nearby sea.
      * A teenage shark can't take another shark's spot.

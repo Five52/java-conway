@@ -29,7 +29,7 @@ public class GameOfLife {
         this.initGame(nbSharks, nbPilchards);
         this.randomize();
     }
-    
+
     public int getWidth() {
         return this.width;
     }
@@ -45,7 +45,7 @@ public class GameOfLife {
     public void setElement(int x, int y, Element e) {
         this.elements[x][y] = e;
     }
-    
+
     public ArrayList<Shark> getSharks() {
         return this.sharks;
     }
@@ -99,7 +99,7 @@ public class GameOfLife {
     }
 
     /**
-     * Initializes the game. 
+     * Initializes the game.
      * The sharks are placed in the beginning of the grid,
      * the pilchards just after the sharks,
      * on the rest of the grid, sea elements are put.
@@ -146,9 +146,43 @@ public class GameOfLife {
     }
 
     /**
+     * Do a cycle of game by making play every fish, sharks first.
+     */
+    public void doCycle() {
+        int initialSize = this.sharks.size();
+        for (int i = 0; i < this.sharks.size() && i < initialSize; i++) {
+            if (!this.sharks.get(i).playAndStayAlive()) {
+                // Since an element of the list has been removed,
+                // we need to decrement the counter to stay in range
+                i--;
+            }
+        }
+        initialSize = this.pilchards.size();
+        for (int i = 0; i < this.pilchards.size() && i < initialSize; i++) {
+            if (!this.pilchards.get(i).playAndStayAlive()) {
+                // Same logic here
+                i--;
+            }
+        }
+        this.display();
+    }
+
+    /**
+     * Play the game until there is no fish left
+     */
+    public void play() {
+        int nbCycles = 0;
+        this.display();
+        while (this.sharks.size() > 0 && this.pilchards.size() > 0) {
+            System.out.println("Cycle #" + nbCycles++);
+            this.doCycle();
+        }
+    }
+
+    /**
      * Displays the grid with borders.
      */
-    public void display() {
+    protected void display() {
         String line = "+-";
         for (int x = 0; x < this.width; x++) {
             line += "-";

@@ -41,7 +41,6 @@ public abstract class Fish extends Element {
     public Fish(GameOfLife game, int x, int y) {
         super(game, x, y);
         this.currentAge = 0;
-        this.reproductionCountdown = REPRODUCTION_INTERVAL;
         this.hasJustReproduced = false;
     }
 
@@ -58,12 +57,19 @@ public abstract class Fish extends Element {
      */
     public void age() {
         this.currentAge++;
+        this.ageReproduction();
+    }
+
+    /**
+     * Reduce the reproduction countdown while resetting reproduction parameters
+     */
+    protected void ageReproduction() {
         if (this.hasJustReproduced) {
-            this.reproductionCountdown = REPRODUCTION_INTERVAL;
+            this.reproductionCountdown = this.getReproductionDuration();
             this.hasJustReproduced = false;
         } else if (this.reproductionCountdown-- <= 1) {
             // Making sure the reproduction countdown doesn't go negative
-            this.reproductionCountdown  = 1;
+            this.reproductionCountdown = 1;
         }
     }
 
@@ -143,8 +149,9 @@ public abstract class Fish extends Element {
 
     /**
      * Play the fish's turn.
+     * @return boolean true if the fish stays alive
      */
-    public void play() {
+    public boolean playAndStayAlive() {
         if (this.canReproduce()) {
             this.reproduce();
         } else {
@@ -153,15 +160,15 @@ public abstract class Fish extends Element {
         this.age();
         if (!this.isHealthy()) {
             this.die();
+            return false;
         }
+        return true;
     }
 
     /**
-     * Make the pilchard die
+     * Make the fish die
      */
-    public void die() {
-        this.getGame().kill(this);
-    }
+    public abstract void die();
 
     /**
      * Create a new fish

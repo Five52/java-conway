@@ -6,15 +6,16 @@ import java.util.ArrayList;
 
 public class Pilchard extends Fish {
 
-    protected static final int MAX_AGE = 10;
-    protected static final int REPRODUCTION_INTERVAL = 2;
-    protected static final String DISPLAY = "-";
+    protected static final int MAX_AGE = 15;
+    protected static final int REPRODUCTION_INTERVAL = 5;
+    protected static final String DISPLAY = "o";
 
     /**
      * Builds a new pilchard.
      */
     public Pilchard(GameOfLife game, int x, int y) {
         super(game, x, y);
+        this.reproductionCountdown = REPRODUCTION_INTERVAL;
     }
 
     @Override
@@ -33,11 +34,18 @@ public class Pilchard extends Fish {
     }
 
     @Override
+    public void die() {
+        this.game.getPilchards().remove(this);
+        this.game.setElement(this.x, this.y, new Sea(this.game, this.x, this.y));
+    }
+
+    @Override
     protected void reproduce() {
         ArrayList<Sea> surroundings = this.getNearbySea();
         int random = (int) Math.random() * surroundings.size();
         Sea s = surroundings.get(random);
         this.game.addPilchard(new Pilchard(this.game, s.getX(), s.getY()));
+        this.hasJustReproduced = true;
     }
 
     @Override
