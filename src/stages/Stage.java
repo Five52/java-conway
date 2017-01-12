@@ -8,7 +8,7 @@ public abstract class Stage {
     /**
      * Move a shark to a nearby element.
      * @param Shark the shark
-     * @return Element the element the shark swapped with, null if no movement.
+     * @return Element the element the shark swapped with, null if no movement
      */
     public abstract Element move(Shark shark);
 

@@ -11,7 +11,7 @@ public class Pilchard extends Fish {
     protected static final String DISPLAY = "o";
 
     /**
-     * Builds a new pilchard.
+     * Build a new pilchard.
      */
     public Pilchard(GameOfLife game, int x, int y) {
         super(game, x, y);

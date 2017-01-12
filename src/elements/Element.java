@@ -25,7 +25,7 @@ public abstract class Element {
     protected int y;
 
     /**
-     * Builds a new element.
+     * Build a new element.
      * @param game The game in which we are
      * @param x The x of the element
      * @param y The y of the element
@@ -57,7 +57,7 @@ public abstract class Element {
     }
 
     /**
-     * Returns the display of the element.
+     * Return the display of the element.
      */
     public abstract String toString();
 

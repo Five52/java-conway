@@ -55,7 +55,7 @@ public class GameOfLife {
     }
 
     /**
-     * Kills the given fish and replace it by a Sea element.
+     * Kill the given fish and replace it by a Sea element.
      * A Pilchard is killed when :
      * 1. Eaten by a shark
      * 2. End of life
@@ -71,7 +71,7 @@ public class GameOfLife {
     }
 
     /**
-     * Add a fish
+     * Add a fish.
      * @param Fish the fish
      */
     protected void addFish(Fish fish) {
@@ -81,7 +81,7 @@ public class GameOfLife {
     }
 
     /**
-     * Add a pilchard
+     * Add a pilchard.
      * @param Pilchard the pilchard
      */
     public void addPilchard(Pilchard p) {
@@ -90,7 +90,7 @@ public class GameOfLife {
     }
 
     /**
-     * Add a shark
+     * Add a shark.
      * @param Shark the shark
      */
     public void addShark(Shark s) {
@@ -99,13 +99,12 @@ public class GameOfLife {
     }
 
     /**
-     * Initializes the game.
+     * Initialize the game.
      * The sharks are placed in the beginning of the grid,
      * the pilchards just after the sharks,
      * on the rest of the grid, sea elements are put.
      * @param nbSharks The number of sharks to put on the grid
      * @param nbPilchards The number of pilchards to put on the grid
-     *
      */
     protected void initGame(int nbSharks, int nbPilchards) {
         int x;
@@ -133,7 +132,7 @@ public class GameOfLife {
     }
 
     /**
-     * Randomizes the elements to mix them and have a random grid.
+     * Randomize the elements to mix them and have a random grid.
      */
     protected void randomize() {
         for (int i = 0; i < this.width; i++) {
@@ -168,7 +167,7 @@ public class GameOfLife {
     }
 
     /**
-     * Play the game until there is no fish left
+     * Play the game until there is no fish left.
      */
     public void play() {
         int nbCycles = 0;
@@ -180,7 +179,7 @@ public class GameOfLife {
     }
 
     /**
-     * Displays the grid with borders.
+     * Display the grid with borders.
      */
     protected void display() {
         String line = "+-";

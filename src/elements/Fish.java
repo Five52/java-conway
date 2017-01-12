@@ -28,12 +28,12 @@ public abstract class Fish extends Element {
     protected int reproductionCountdown;
 
     /**
-     * Defines if the fish has just reproduced
+     * Define if the fish has just reproduced.
      */
     protected boolean hasJustReproduced;
 
     /**
-     * Builds a new fish.
+     * Build a new fish.
      * @param game The game
      * @param x The x coordinate
      * @param y The y coordinate
@@ -45,8 +45,8 @@ public abstract class Fish extends Element {
     }
 
     /**
-     * Returns the current age of the fish.
-     * @return currentAge The current age of the fish.
+     * Return the current age of the fish.
+     * @return currentAge The current age of the fish
      */
     public int getCurrentAge() {
         return this.currentAge;
@@ -61,7 +61,7 @@ public abstract class Fish extends Element {
     }
 
     /**
-     * Reduce the reproduction countdown while resetting reproduction parameters
+     * Reduce the reproduction countdown while resetting reproduction parameters.
      */
     protected void ageReproduction() {
         if (this.hasJustReproduced) {
@@ -78,7 +78,7 @@ public abstract class Fish extends Element {
      * The reproduction countdown is checked at 1 or less because the the reproduction is made AFTER checking,
      * whereas eating and aging are made BEFORE checking.
      * Checking if the reproduction countdown is at 0 makes the fish reproduce one cycle too late.
-     * @return boolean true if the fish can reproduce.
+     * @return boolean true if the fish can reproduce
      */
     public boolean canReproduce() {
         return this.reproductionCountdown <= 1
@@ -124,7 +124,7 @@ public abstract class Fish extends Element {
 
     /**
      * Returns the Sea element nearby the fish.
-     * @return ArrayList<Sea> The arrayList of the surroundings Sea elements.
+     * @return ArrayList<Sea> The arrayList of the surroundings Sea elements
      */
     public ArrayList<Sea> getNearbySea() {
         ArrayList<Element> surroundings = this.getSurroundings();
@@ -138,12 +138,14 @@ public abstract class Fish extends Element {
     }
 
     /**
-     * Returns the max age of the fish.
+     * Return the max age of the fish
+     * @return int The max age of the fish
      */
     public abstract int getMaxAge();
 
     /**
-     * Returns the reproduction duration of the fish.
+     * Return the reproduction duration of the fish
+     * @return int The reproduction cycle duration of the fish
      */
     public abstract int getReproductionDuration();
 
@@ -166,22 +168,22 @@ public abstract class Fish extends Element {
     }
 
     /**
-     * Make the fish die
+     * Make the fish die.
      */
     public abstract void die();
 
     /**
-     * Create a new fish
+     * Create a new fish.
      */
     protected abstract void reproduce();
 
     /**
-     * Move the fish
+     * Move the fish.
      */
     protected abstract void move();
 
     /**
-     * Check if the fish is healthy
+     * Check if the fish is healthy.
      * @return boolean true if the fish can play another cycle
      */
     protected abstract boolean isHealthy();

@@ -10,19 +10,19 @@ public class Shark extends Fish {
     protected static final int MAX_AGE = 45;
     protected static final int REPRODUCTION_INTERVAL = 6;
     /**
-     * Maximal time a shark has to live when he has just eaten
+     * Maximal time a shark has to live when he has just eaten.
      */
     protected static final int EATING_INTERVAL = 5;
     protected static final String DISPLAY = "S";
 
 
     /**
-     * Time left for shark to eat before dying
+     * Time left for shark to eat before dying.
      */
     protected int eatingCountdown;
 
     /**
-     * Defines if the shark has just eaten
+     * Define if the shark has just eaten.
      */
     protected boolean hasJustEaten;
 
@@ -32,7 +32,7 @@ public class Shark extends Fish {
     protected Stage currentStage;
 
     /**
-     * Builds a new shark.
+     * Build a new shark.
      */
     public Shark(GameOfLife game, int x, int y) {
         super(game, x, y);
@@ -83,7 +83,7 @@ public class Shark extends Fish {
     }
 
     /**
-     * Returns the Pilchards nearby the shark.
+     * Return the Pilchards nearby the shark.
      * @return ArrayList<Pilchard> The arrayList of the nearby pilchards.
      */
     public ArrayList<Pilchard> getNearbyPilchards() {
@@ -132,7 +132,7 @@ public class Shark extends Fish {
     }
 
     /**
-     * Eat the pilchard
+     * Eat the pilchard.
      * @param Pilchard the pilchard which has been eaten
      */
     protected void eat(Pilchard pilchard) {
