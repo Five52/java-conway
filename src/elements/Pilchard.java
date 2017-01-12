@@ -61,6 +61,6 @@ public class Pilchard extends Fish {
      */
     @Override
     protected boolean isHealthy() {
-        return this.age < MAX_AGE && this.eatingCountdown > 0;
+        return this.currentAge < MAX_AGE;
     }
 }

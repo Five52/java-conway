@@ -105,7 +105,7 @@ public class Shark extends Fish {
 
     @Override
     protected void move() {
-        Element e = this.currentStage.move();
+        Element e = this.currentStage.move(this);
         // Switching with a pilchard means the shark eats it.
         if (e instanceof Pilchard) {
             this.eat((Pilchard) e);
@@ -119,7 +119,7 @@ public class Shark extends Fish {
      */
     @Override
     protected boolean isHealthy() {
-        return this.age < MAX_AGE && this.eatingCountdown > 0;
+        return this.currentAge < MAX_AGE && this.eatingCountdown > 0;
     }
 
     /**
@@ -128,6 +128,6 @@ public class Shark extends Fish {
      */
     protected void eat(Pilchard pilchard) {
         pilchard.die();
-        this.hasEaten = true;
+        this.hasJustEaten = true;
     }
 }

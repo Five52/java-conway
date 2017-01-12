@@ -26,7 +26,7 @@ public class AdultStage extends Stage {
         ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
         if (pilchards.size() != 0) {
             Pilchard nearest = this.getNearestPilchard(shark, pilchards);
-            // TODO
+            return this.nextElementInBestPath(shark, nearest);
         }
 
         // Else we move the shark randomly
@@ -73,6 +73,46 @@ public class AdultStage extends Stage {
         int dx = Math.abs(s.getX() - p.getX());
         int dy = Math.abs(s.getY() - p.getY());
         return Math.max(dx, dy);
+    }
+
+    /**
+     * Calculate the best path to go from a shark to a pilchard.
+     * We calculate the oriented angle and define the best cell
+     * to go next accordingly.
+     * @param Shark the pilchard being chased
+     * @param Pilchard the pilchard being chased
+     * @return Element the element to go to follow the best path
+     */
+    protected Element nextElementInBestPath(Shark s, Pilchard p) {
+        // Define the coordinates of the absciss vector
+        int abscissX = 1;
+        int abscissY = 0;
+        // Define the coordinates of the vector defined from Shark to Pilchard
+        int vectorX = p.getX() - s.getX();
+        int vectorY = p.getY() - s.getY();
+        // Calculate the oriented angle from the absciss vector to the Shark-Pilchard vector
+        // The angle is in the intervall ]-Pi ; Pi]
+        double angle = Math.atan2(
+            abscissX * vectorY - abscissY * vectorX,
+            abscissX * vectorX + abscissY * vectorY
+        );
+
+        int elementCoordinateX = s.getX();
+        int elementCoordinateY = s.getY();
+        // Increase or decrease elementCoordinateX
+        if (angle > Math.PI * 5 / 8 || angle <= - Math.PI * 5 / 8  ) {
+            elementCoordinateX--;
+        } else if (angle > - Math.PI * 3 / 8 && angle <= Math.PI * 3) {
+            elementCoordinateX++;
+        }
+        // Increase or decrease elementCoordinateY
+        if (angle > - Math.PI * 7 / 8 && angle <= - Math.PI / 8  ) {
+            elementCoordinateX--;
+        } else if (angle > Math.PI / 8 && angle <= - Math.PI * 7 / 8  ) {
+            elementCoordinateX++;
+        }
+
+        return s.getGame().getElement(elementCoordinateX, elementCoordinateY);
     }
 
     @Override
