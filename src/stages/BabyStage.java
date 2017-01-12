@@ -5,6 +5,8 @@ import elements.*;
 import java.util.ArrayList;
 
 public class BabyStage extends Stage {
+
+    protected static final int NEXT_STAGE_TIME = 3;
     /**
      * Move a shark to a random spot.
      * A baby shark can't take another shark's spot.

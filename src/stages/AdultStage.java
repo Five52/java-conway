@@ -25,7 +25,8 @@ public class AdultStage extends Stage {
         // Else we look for the nearest pilchard
         ArrayList<Pilchard> pilchards = shark.getGame().getPilchards();
         if (pilchards.size() != 0) {
-            return this.getNearestPilchard(shark, pilchards);
+            Pilchard nearest = this.getNearestPilchard(shark, pilchards);
+            // TODO
         }
 
         // Else we move the shark randomly
