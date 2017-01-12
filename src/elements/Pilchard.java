@@ -5,7 +5,7 @@ import game.GameOfLife;
 import java.util.ArrayList;
 
 public class Pilchard extends Fish {
-    
+
     protected static final int MAX_AGE = 10;
     protected static final int REPRODUCTION_INTERVAL = 2;
     protected static final String DISPLAY = "-";
@@ -21,7 +21,7 @@ public class Pilchard extends Fish {
     public int getMaxAge() {
         return MAX_AGE;
     }
-    
+
     @Override
     public int getReproductionDuration() {
         return REPRODUCTION_INTERVAL;
@@ -48,8 +48,19 @@ public class Pilchard extends Fish {
         if (size == 0) {
             return;
         }
-        int random = (int) Math.random() * size;
+        int random = (int) (Math.random() * size);
         Sea target = surroundingsSea.get(random);
         this.swap(target);
+    }
+
+
+    /**
+     * Check if the pilchard is healthy,
+     * meaning if it is not too old.
+     * @return boolean true if the fish can play another cycle
+     */
+    @Override
+    protected boolean isHealthy() {
+        return this.age < MAX_AGE && this.eatingCountdown > 0;
     }
 }

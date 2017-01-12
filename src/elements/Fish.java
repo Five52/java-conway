@@ -15,7 +15,7 @@ public abstract class Fish extends Element {
      * Reproduction interval of the fish.
      */
     protected static int REPRODUCTION_INTERVAL;
-    
+
     /**
      * Current age of the fish.
      */
@@ -28,6 +28,11 @@ public abstract class Fish extends Element {
     protected int reproductionCountdown;
 
     /**
+     * Defines if the fish has just reproduced
+     */
+    protected boolean hasJustReproduced;
+
+    /**
      * Builds a new fish.
      * @param game The game
      * @param x The x coordinate
@@ -37,8 +42,9 @@ public abstract class Fish extends Element {
         super(game, x, y);
         this.currentAge = 0;
         this.reproductionCountdown = REPRODUCTION_INTERVAL;
+        this.hasJustReproduced = false;
     }
-    
+
     /**
      * Returns the current age of the fish.
      * @return currentAge The current age of the fish.
@@ -46,20 +52,30 @@ public abstract class Fish extends Element {
     public int getCurrentAge() {
         return this.currentAge;
     }
-    
+
     /**
-     * Age the fish (incrementation).
+     * Increase the age of the fish and decrease the reproduction countdown.
      */
     public void age() {
         this.currentAge++;
+        if (this.hasJustReproduced) {
+            this.reproductionCountdown = REPRODUCTION_INTERVAL;
+            this.hasJustReproduced = false;
+        } else if (this.reproductionCountdown-- <= 1) {
+            // Making sure the reproduction countdown doesn't go negative
+            this.reproductionCountdown  = 1;
+        }
     }
 
     /**
      * Check if the fish can reproduce.
+     * The reproduction countdown is checked at 1 or less because the the reproduction is made AFTER checking,
+     * whereas eating and aging are made BEFORE checking.
+     * Checking if the reproduction countdown is at 0 makes the fish reproduce one cycle too late.
      * @return boolean true if the fish can reproduce.
      */
     public boolean canReproduce() {
-        return this.reproductionCountdown == 0
+        return this.reproductionCountdown <= 1
             && this.getNearbySea().size() != 0;
     }
 
@@ -68,8 +84,8 @@ public abstract class Fish extends Element {
      * @return surroundings an ArrayList of the surroundings elements
      */
     public ArrayList<Element> getSurroundings() {
-        ArrayList<Element> surroundings = new ArrayList<Element>(); 
-        
+        ArrayList<Element> surroundings = new ArrayList<Element>();
+
         int startX = this.getX() - 1;
         int endX = this.getX() + 1;
         int startY = this.getY() - 1;
@@ -88,7 +104,7 @@ public abstract class Fish extends Element {
         if (endY > this.game.getHeight() - 1) {
             endY = this.getY();
         }
-        
+
         for (int i = startX; i < endX + 1; i++) {
             for (int j = startY; j < endY + 1; j++) {
                 if (i == this.x && j == this.y) {
@@ -99,7 +115,7 @@ public abstract class Fish extends Element {
         }
         return surroundings;
     }
-    
+
     /**
      * Returns the Sea element nearby the fish.
      * @return ArrayList<Sea> The arrayList of the surroundings Sea elements.
@@ -109,7 +125,7 @@ public abstract class Fish extends Element {
         ArrayList<Sea> surroundingsSea = new ArrayList<Sea>();
         for (Element surroundingElement : surroundings) {
             if (surroundingElement instanceof Sea) {
-                surroundingsSea.add((Sea) surroundingElement); 
+                surroundingsSea.add((Sea) surroundingElement);
             }
         }
         return surroundingsSea;
@@ -135,9 +151,16 @@ public abstract class Fish extends Element {
             this.move();
         }
         this.age();
-        if (!this.hasSurvived()) {
-            this.getGame().kill(this);
+        if (!this.isHealthy()) {
+            this.die();
         }
+    }
+
+    /**
+     * Make the pilchard die
+     */
+    public void die() {
+        this.getGame().kill(this);
     }
 
     /**
@@ -151,7 +174,8 @@ public abstract class Fish extends Element {
     protected abstract void move();
 
     /**
-     * Check if the fish has survived this turn
+     * Check if the fish is healthy
+     * @return boolean true if the fish can play another cycle
      */
-    protected abstract boolean hasSurvived();
+    protected abstract boolean isHealthy();
 }
